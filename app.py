@@ -130,5 +130,5 @@ def index():
 
     return render_template('index.html', tables=tables, total_hours=total_hours, total_hours_formatted=total_hours_formatted)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
