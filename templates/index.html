@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working Hours and Attendance</title>
+    <!-- Link to the custom CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Calculate Working Hours and Attendance</h1>
+        
+        <!-- Upload .txt file for processing -->
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="txtFile">Upload a .txt file with log data:</label>
+                <input type="file" class="form-control" name="txtFile" accept=".txt" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload .txt and Download CSV</button>
+        </form>
+        <hr>
+
+        <!-- Upload .csv file for attendance calculation -->
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="csvFile">Upload a .csv file to calculate attendance:</label>
+                <input type="file" class="form-control" name="csvFile" accept=".csv" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload CSV and Calculate Attendance</button>
+        </form>
+
+        <!-- Attendance summary table and total hours -->
+        {% if tables %}
+        <hr>
+        <h3>Attendance Summary</h3>
+        {{ tables|safe }}
+        <p>Total Hours Worked: {{ total_hours }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
